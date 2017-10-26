@@ -328,7 +328,7 @@ for(var i in touchButtons){
 		function down(){
 			entities[entities.length-1].velY = 4;
 		}
-		function attack(){
+		function a(){
 			let p = entities[entities.length-1],
 				e = entities[entities.length-2];
 			let t = new CollisionBlock(e.x, e.y, e.w, e.h);
@@ -374,7 +374,7 @@ for(var i in touchButtons){
 		function down(){
 			//entities[entities.length-1].velY = 0;
 		}
-		function attack(){
+		function a(){
 			//
 		}
 		eval(this.id+'()');
