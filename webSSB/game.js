@@ -1,4 +1,4 @@
-const BUILD = "101417a",
+const BUILD = "102517c",
 	VERSION = "1.00_b1";
 
 const canvas = document.createElement('canvas'),
@@ -301,3 +301,82 @@ AIPlayer = function(){
 	this.update = this.p.update.bind(this.p);
 };
 let ai = new AIPlayer();
+let touchButtons = {
+	"up": document.createElement('div'),
+	"down": document.createElement('div'),
+	"left": document.createElement('div'),
+	"right": document.createElement('div'),
+	"a": document.createElement('div'),
+};
+for(var i in touchButtons){
+	touchButtons[i].id = i;
+	touchButtons[i].ontouchstart = function(e){
+		e.preventDefault();
+		function undefined(){
+			console.log(e.keyCode);
+		}
+		function left(){
+			entities[entities.length-1].velX = -4;
+		}
+		function right(){
+			entities[entities.length-1].velX = 4;
+		}
+		function up(){
+			if(entities[entities.length-1].onGround)
+			entities[entities.length-1].velY = -6;
+		}
+		function down(){
+			entities[entities.length-1].velY = 4;
+		}
+		function attack(){
+			let p = entities[entities.length-1],
+				e = entities[entities.length-2];
+			let t = new CollisionBlock(e.x, e.y, e.w, e.h);
+			if(t.check(p.x,p.y,p.w,p.h)&&p.lastHit<new Date().getTime()-1280) {
+				e.p.hit();
+				p.lastHit = new Date().getTime();
+			}
+		}
+		eval(this.id+'()');
+	};
+	document.body.appendChild(touchButtons[i]);
+	if(i=='a') {
+		touchButtons[i].style['right'] = 16+'px';
+		touchButtons[i].style['position'] = 'absolute';
+	}
+		touchButtons[i].style['position'] = 'absolute';
+		touchButtons[i].style.padding = '32px'
+		touchButtons[i].style.background = 'rgba(0, 55, 0, 0.5)';
+	touchButtons[i].innerHTML = i;
+	let left = {
+		'left': 16,
+		'right': 192,
+		'up': 96,
+		'down': 48
+	}
+	if(i=='down') touchButtons[i].style.bottom = '0px'
+	touchButtons[i].style.left=left[i]+'px'
+	touchButtons[i].ontouchend = function(e){
+		e.preventDefault();
+		function undefined(){
+			console.log(e.keyCode);
+		}
+		function left(){
+			entities[entities.length-1].velX = -0;
+		}
+		function right(){
+			entities[entities.length-1].velX = 0;
+		}
+		function up(){
+			//if(entities[entities.length-1].onGround)
+			//entities[entities.length-1].velY = -6;
+		}
+		function down(){
+			//entities[entities.length-1].velY = 0;
+		}
+		function attack(){
+			//
+		}
+		eval(this.id+'()');
+	};
+}
