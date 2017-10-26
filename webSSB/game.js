@@ -1,6 +1,6 @@
 const BUILD = "102517c",
 	VERSION = "1.00_b3";
-
+ 
 const canvas = document.createElement('canvas'),
 	context = canvas.getContext('2d');
 canvas.width = 640;
